@@ -29,15 +29,15 @@ const logos = [
       .hero-row { margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
       .cta { text-decoration:none; color:#fff; background:linear-gradient(180deg,#3a74ff,#2a5fe0); border:1px solid #6991ff; padding:12px 16px; border-radius:10px; font-weight:700; font-size:.98rem; box-shadow:0 6px 18px rgba(44,111,255,.28); }
       .soon { color:var(--muted); font-size:.94rem; }
-      .counter-wrap { margin-top:12px; display:flex; justify-content:center; }
-      .counter { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:999px; padding:7px 12px; background:rgba(255,255,255,.04); }
+      .counter-wrap { margin-top:12px; display:flex; justify-content:center; width:100%; }
+      .counter { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:999px; padding:7px 12px; background:rgba(255,255,255,.04); margin:0 auto; }
       .counter-num { font-weight:700; }
 
       .center { text-align:center; }
       h2 { margin:0; font-size:clamp(2rem,5vw,3.7rem); line-height:1.02; letter-spacing:-.02em; }
       .sub { margin:10px auto 0; max-width:28ch; color:var(--muted); font-size:clamp(1rem,2vw,1.2rem); }
       .grid { margin-top:18px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-      .tile { text-align:left; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; }
+      .tile { text-align:center; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; }
       .ico { font-size:1.35rem; display:block; margin-bottom:6px; }
       .tile b { font-size:1.1rem; }
       .tile p { margin:6px 0 0; color:var(--muted); }
@@ -72,12 +72,11 @@ const logos = [
         <div class="hero">
           <img class="hero-logo" src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
           <div>
-            <span class="badge">by OpenClaw</span>
+            <span class="badge">🦞 by OpenClaw</span>
             <h1>ALFRED CLAW</h1>
             <p class="lead">Automatiza tareas y ejecuta mejor tu día con un asistente realmente útil.</p>
             <div class="hero-row">
               <a class="cta" href="#waitlist">Unirme a la lista</a>
-              <span class="soon">Disponible próximamente</span>
             </div>
             <div class="counter-wrap">
               <div class="counter"><span>👀</span><span class="counter-num" id="visit-count">…</span></div>
