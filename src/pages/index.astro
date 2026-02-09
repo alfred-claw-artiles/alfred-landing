@@ -27,8 +27,9 @@ const logos = [
       .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
       footer{margin-top:34px;color:var(--muted);font-size:.9rem}
       .counter-wrap{display:flex;justify-content:center;margin-top:20px}
-      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#b8c7ea;font-size:.86rem}
+      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#b8c7ea;font-size:.9rem}
       .counter img{height:20px;border-radius:999px;opacity:.95}
+      .counter-num{color:#eaf0ff;font-weight:600;min-width:2ch;text-align:right}
     </style>
   </head>
   <body>
@@ -43,8 +44,8 @@ const logos = [
 
       <div class="counter-wrap">
         <div class="counter">
-          <span>Visitas</span>
-          <img alt="contador de visitas" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Falfred-claw-artiles.github.io%2Falfred-landing%2F&count_bg=%23243A5A&title_bg=%23141F33&icon=github.svg&icon_color=%23C7D8FF&title=total&edge_flat=false" />
+          <span>👀</span>
+          <span class="counter-num" id="visit-count">...</span>
         </div>
       </div>
 
@@ -63,5 +64,19 @@ const logos = [
       </footer>
     </main>
 
+    <script>
+      (async () => {
+        const el = document.getElementById('visit-count');
+        try {
+          const ns = 'alfred-claw-artiles';
+          const key = 'alfred-landing-visits';
+          const r = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`);
+          const data = await r.json();
+          el.textContent = String(data.value ?? '--');
+        } catch {
+          el.textContent = '--';
+        }
+      })();
+    </script>
   </body>
 </html>
