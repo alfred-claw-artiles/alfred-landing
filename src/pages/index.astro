@@ -41,10 +41,15 @@ const logos = [
       .feature p{margin:8px 0 0;color:#c7d7ff}
 
       .wait-box{max-width:760px;margin:26px auto 0;padding:22px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
-      .row{display:flex;gap:10px;flex-wrap:wrap}
+      .row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
       input[type=email]{flex:1;min-width:230px;background:#0a1430;color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:1rem}
-      button{background:#1f4f96;color:#fff;border:1px solid #3a6ec0;padding:14px 16px;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer}
+      button{background:#1f4f96;color:#fff;border:1px solid #3a6ec0;padding:14px 16px;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;white-space:nowrap}
       .ok{font-size:.95rem;color:#baffd5;margin-top:10px;display:none}
+      @media (max-width: 680px){
+        .row{flex-direction:column}
+        input[type=email],button{width:100%}
+        button{white-space:normal}
+      }
 
       .logo-grid{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
       .logo-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
@@ -95,7 +100,7 @@ const logos = [
               <input id="email" type="email" placeholder="tu@email.com" required />
               <button type="submit">Quiero entrar</button>
             </div>
-            <div class="ok" id="ok-msg">¡Apuntado! Guardado en waitlist.txt ✅</div>
+            <div class="ok" id="ok-msg">¡Apuntado! ✅</div>
           </form>
         </div>
       </div>
