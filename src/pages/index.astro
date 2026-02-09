@@ -27,8 +27,8 @@ const logos = [
       .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
       footer{margin-top:34px;color:var(--muted);font-size:.9rem}
       .counter-wrap{display:flex;justify-content:center;margin-top:20px}
-      .counter{display:flex;align-items:center;padding:6px 8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px}
-      .counter img{height:20px;border-radius:999px;opacity:.95;display:block}
+      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#d9e6ff}
+      .counter-num{font-weight:700;min-width:2ch}
     </style>
   </head>
   <body>
@@ -43,7 +43,8 @@ const logos = [
 
       <div class="counter-wrap">
         <div class="counter">
-          <img alt="contador" src="https://visitor-badge.laobi.icu/badge?page_id=alfred-claw-artiles.alfred-landing&left_text=%F0%9F%91%80" />
+          <span>👀</span>
+          <span class="counter-num" id="visit-count">…</span>
         </div>
       </div>
 
@@ -62,5 +63,41 @@ const logos = [
       </footer>
     </main>
 
+    <script>
+      (async () => {
+        const el = document.getElementById('visit-count');
+        const localKey = 'alfred_landing_local_visits';
+        const bumpLocal = () => {
+          const next = (parseInt(localStorage.getItem(localKey) || '0', 10) || 0) + 1;
+          localStorage.setItem(localKey, String(next));
+          return next;
+        };
+
+        try {
+          const ns = 'alfred-claw-artiles';
+          const key = 'alfred-landing-visits';
+          const r = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`);
+          const data = await r.json();
+          if (Number.isFinite(data?.value)) {
+            el.textContent = String(data.value);
+            return;
+          }
+        } catch {}
+
+        try {
+          const u = 'https://visitor-badge.laobi.icu/badge?page_id=alfred-claw-artiles.alfred-landing&left_text=%F0%9F%91%80&_=' + Date.now();
+          const r = await fetch(u);
+          const svg = await r.text();
+          const nums = [...svg.matchAll(/>(\d+)</g)].map(m => Number(m[1]));
+          const last = nums.length ? nums[nums.length - 1] : NaN;
+          if (Number.isFinite(last)) {
+            el.textContent = String(last);
+            return;
+          }
+        } catch {}
+
+        el.textContent = String(bumpLocal());
+      })();
+    </script>
   </body>
 </html>
