@@ -1,0 +1,149 @@
+---
+const logos = [
+  { file: 'alfred-avatar-definitivo.png', label: 'Logo definitivo' },
+  { file: '001-logo-style-emblem-for-telegram-avatar-an.png', label: 'Propuesta OpenAI refine' },
+  { file: '001-flat-vector-logo-avatar-of-lobster-profe.png', label: 'Propuesta vectorial' },
+  { file: 'avatar_02_tornasol_lobster_badge.png', label: 'Variante badge' },
+  { file: 'avatar_04_tornasol_lobster_split.png', label: 'Variante split' },
+  { file: 'avatar_08_flat_lobster_icon.png', label: 'Variante flat icon' }
+];
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alfred Claw · SOTY Edition</title>
+    <style>
+      :root{--bg:#0a0a0a;--panel:#111;--line:#252525;--txt:#f6f6f6;--muted:#bdbdbd;--accent:#9df8ff}
+      *{box-sizing:border-box}
+      html,body{margin:0}
+      body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt)}
+      .wrap{max-width:1200px;margin:0 auto;padding:18px}
+      .hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+      .kicker{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+      h1{margin:.2rem 0 1rem;font-size:clamp(2.4rem,9vw,7rem);line-height:.9;letter-spacing:-.04em}
+      .lead{font-size:clamp(1rem,2vw,1.25rem);color:#d9d9d9;max-width:34ch}
+      .cta-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+      .cta{background:#fff;color:#101010;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;border:1px solid #fff}
+      .badge{border:1px solid #393939;border-radius:999px;padding:6px 10px;color:#d6d6d6;font-size:.85rem}
+      .count{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #333;border-radius:999px;background:#141414}
+      .visual{position:relative;aspect-ratio:4/5;background:linear-gradient(180deg,#101010,#191919);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;overflow:hidden}
+      .visual:before{content:"";position:absolute;inset:10% 12%;border:1px solid #2b2b2b;border-radius:16px}
+      .visual img{position:relative;width:min(82%,420px);border-radius:50%;border:5px solid var(--accent)}
+
+      section{padding:96px 0;border-top:1px solid #1b1b1b}
+      h2{font-size:clamp(1.8rem,5vw,4rem);line-height:1;letter-spacing:-.03em;margin:0}
+      .sub{margin:10px 0 0;color:var(--muted);font-size:1.05rem}
+      .grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+      .card{background:var(--panel);border:1px solid #262626;border-radius:14px;padding:22px;text-align:center}
+      .card .ico{font-size:1.4rem;display:block;margin-bottom:8px}
+      .card b{font-size:1.12rem}
+      .card p{margin:8px 0 0;color:#cbcbcb}
+
+      .wait{margin-top:24px;max-width:760px;background:var(--panel);border:1px solid #262626;border-radius:14px;padding:14px}
+      .row{display:flex;gap:10px}
+      input[type=email]{flex:1;min-width:210px;background:#0f0f0f;color:#fff;border:1px solid #323232;border-radius:10px;padding:13px;font-size:1rem}
+      button{background:#fff;color:#0e0e0e;border:1px solid #fff;border-radius:10px;padding:13px 16px;font-weight:700;cursor:pointer}
+      .ok{display:none;margin-top:8px;color:#baffc0;font-size:.92rem}
+
+      .logos{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+      .logo-card{background:var(--panel);border:1px solid #262626;border-radius:12px;padding:8px}
+      .logo-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:9px}
+      .label{font-size:.9rem;color:#bdbdbd;margin-top:6px}
+
+      @media (max-width:900px){
+        .hero{grid-template-columns:1fr;min-height:auto;padding-top:40px}
+        .grid{grid-template-columns:1fr}
+        .visual{aspect-ratio:16/11}
+      }
+      @media (max-width:620px){.row{flex-direction:column}input[type=email],button{width:100%}}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <div>
+          <div class="kicker">🦞 by OpenClaw</div>
+          <h1>ALFRED<br/>CLAW</h1>
+          <p class="lead">Automatiza tareas y ejecuta mejor tu día con un asistente realmente útil.</p>
+          <div class="cta-row">
+            <a class="cta" href="#waitlist">Unirme a la lista</a>
+            <span class="badge">Acceso anticipado</span>
+          </div>
+          <div class="count"><span>👀</span><span id="visit-count">…</span></div>
+        </div>
+        <div class="visual">
+          <img src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
+        </div>
+      </header>
+
+      <section>
+        <h2>Rápido. Útil. Adaptable.</h2>
+        <p class="sub">Menos ruido, más resultados.</p>
+        <div class="grid">
+          <article class="card"><span class="ico">⚡</span><b>Rápido</b><p>Respuestas claras al instante.</p></article>
+          <article class="card"><span class="ico">🧠</span><b>Útil</b><p>Automatización real para tu día.</p></article>
+          <article class="card"><span class="ico">🎯</span><b>Adaptable</b><p>Se ajusta a tu forma de trabajar.</p></article>
+        </div>
+      </section>
+
+      <section id="waitlist">
+        <h2>Únete a la lista</h2>
+        <p class="sub">Te avisaré cuando abramos acceso.</p>
+        <div class="wait">
+          <form id="waitlist-form">
+            <div class="row">
+              <input id="email" type="email" required placeholder="tu@email.com" />
+              <button type="submit">Apuntarme</button>
+            </div>
+            <div class="ok" id="ok-msg">¡Perfecto! Quedas dentro ✅</div>
+          </form>
+        </div>
+      </section>
+
+      <section>
+        <h2>Evolución del logo</h2>
+        <p class="sub">Del concepto al definitivo.</p>
+        <div class="logos">
+          {logos.map((logo) => (
+            <article class="logo-card">
+              <img src={`/alfred-landing/logos/${logo.file}`} alt={logo.label} loading="lazy" />
+              <div class="label">{logo.label}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (async () => {
+        const countEl = document.getElementById('visit-count');
+        const localVisits = () => {
+          const k = 'alfred_visits_fallback_soty';
+          const n = (parseInt(localStorage.getItem(k) || '0', 10) || 0) + 1;
+          localStorage.setItem(k, String(n));
+          return n;
+        };
+        try {
+          const r = await fetch('https://api.countapi.xyz/hit/alfred-claw-artiles/alfred-landing-soty-visits');
+          const d = await r.json();
+          countEl.textContent = Number.isFinite(d?.value) ? String(d.value) : String(localVisits());
+        } catch { countEl.textContent = String(localVisits()); }
+
+        const form = document.getElementById('waitlist-form');
+        const ok = document.getElementById('ok-msg');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = (document.getElementById('email').value || '').trim().toLowerCase();
+          if (!email) return;
+          const key = 'alfred_waitlist_txt';
+          const prev = localStorage.getItem(key) || '';
+          const line = `${new Date().toISOString()}\t${email}`;
+          localStorage.setItem(key, (prev ? prev + '\n' : '') + line);
+          ok.style.display = 'block';
+          form.reset();
+        });
+      })();
+    </script>
+  </body>
+</html>
