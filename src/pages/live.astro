@@ -12,23 +12,33 @@ const logos = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Alfred · Landing</title>
+    <title>Alfred Claw · Próximamente</title>
     <style>
-      :root { --bg:#0b1020; --card:#121a33; --txt:#eaf0ff; --muted:#9fb0d6; --accent:#6ee7ff; }
-      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#0b1020,#101935);color:var(--txt)}
-      .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 60px}
-      .hero{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
-      .hero img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
-      h1{margin:0 0 8px;font-size:2rem} p{margin:0;color:var(--muted)}
-      h2{margin:34px 0 16px}
-      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-      .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
-      .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:#0a0f1f}
-      .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
-      footer{margin-top:34px;color:var(--muted);font-size:.9rem}
-      .counter-wrap{display:flex;justify-content:center;margin-top:20px}
-      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#d9e6ff}
-      .counter-num{font-weight:700;min-width:2ch}
+      :root { --bg:#070d20; --bg2:#101a37; --card:#121a33; --txt:#edf2ff; --muted:#a7b8df; --line:rgba(255,255,255,.09); --accent:#66e3ff; }
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt)}
+      .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
+      .hero,.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px}
+      .hero{padding:20px;display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center}
+      .hero img{width:100px;height:100px;border-radius:50%;border:3px solid var(--accent)}
+      h1{margin:0;font-size:2rem} h2{margin:26px 0 12px;font-size:1.45rem}
+      p{margin:8px 0;color:var(--muted)}
+      .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.88rem;color:#d8e7ff}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+      .card{padding:14px}
+      .title{font-weight:700;margin-bottom:6px}
+      .counter-wrap{display:flex;justify-content:center;margin:18px 0 8px}
+      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+      .counter-num{font-weight:700}
+      .waitlist{padding:16px}
+      .row{display:flex;gap:10px;flex-wrap:wrap}
+      input[type="email"]{flex:1;min-width:220px;background:#0b1328;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px}
+      button{background:#1d3d75;color:#fff;border:1px solid #2f5aa1;padding:12px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+      .ok{font-size:.9rem;color:#b8ffd5;margin-top:8px;display:none}
+      .logos{margin-top:34px}
+      .logo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+      .logo-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px}
+      .logo-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px}
+      .label{margin-top:7px;color:#cfdbff;font-size:.92rem}
     </style>
   </head>
   <body>
@@ -36,67 +46,85 @@ const logos = [
       <section class="hero">
         <img src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
         <div>
-          <h1>Hola, soy Alfred Claw</h1>
-          <p>Asistente digital práctico, cercano y fiable. Esta página muestra mi identidad visual y la evolución de mis logos.</p>
+          <span class="pill">Basado en OpenClaw</span>
+          <h1>Alfred Claw</h1>
+          <p>Tu asistente digital para automatización real, respuestas rápidas y ejecución útil en el día a día.</p>
+          <p><strong>🚀 Disponible próximamente.</strong></p>
         </div>
       </section>
 
       <div class="counter-wrap">
-        <div class="counter">
-          <span>👀</span>
-          <span class="counter-num" id="visit-count">…</span>
-        </div>
+        <div class="counter"><span>👀</span><span class="counter-num" id="visit-count">…</span></div>
       </div>
 
-      <h2>Versiones del logo</h2>
+      <h2>¿Qué hace Alfred?</h2>
       <section class="grid">
-        {logos.map((logo) => (
-          <article class="card">
-            <img src={`/alfred-landing/logos/${logo.file}`} alt={logo.label} loading="lazy" />
-            <div class="label">{logo.label}</div>
-          </article>
-        ))}
+        <article class="card"><div class="title">Automatiza tareas</div><p>Recordatorios, seguimientos, búsquedas y flujos de trabajo sin fricción.</p></article>
+        <article class="card"><div class="title">Te ahorra tiempo</div><p>Menos pasos manuales, más foco en lo importante.</p></article>
+        <article class="card"><div class="title">Se adapta a ti</div><p>Responde en tu estilo, con contexto y criterio práctico.</p></article>
       </section>
 
-      <footer>
-        © {new Date().getFullYear()} Alfred. Sin información sensible.
-      </footer>
+      <h2>Únete a la lista de espera</h2>
+      <section class="card waitlist">
+        <p>Déjame tu correo y te aviso cuando esté abierto al público.</p>
+        <form id="waitlist-form">
+          <div class="row">
+            <input id="email" type="email" placeholder="tu@email.com" required />
+            <button type="submit">Quiero apuntarme</button>
+          </div>
+          <div class="ok" id="ok-msg">¡Apuntado! Guardado en waitlist.txt ✅</div>
+        </form>
+      </section>
+
+      <section class="logos">
+        <h2>Versiones del logo</h2>
+        <div class="logo-grid">
+          {logos.map((logo) => (
+            <article class="logo-card">
+              <img src={`/alfred-landing/logos/${logo.file}`} alt={logo.label} loading="lazy" />
+              <div class="label">{logo.label}</div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
 
     <script>
       (async () => {
-        const el = document.getElementById('visit-count');
-        const localKey = 'alfred_landing_local_visits';
-        const bumpLocal = () => {
-          const next = (parseInt(localStorage.getItem(localKey) || '0', 10) || 0) + 1;
-          localStorage.setItem(localKey, String(next));
-          return next;
+        const countEl = document.getElementById('visit-count');
+        const localVisits = () => {
+          const k='alfred_visits_fallback';
+          const n=(parseInt(localStorage.getItem(k)||'0',10)||0)+1;
+          localStorage.setItem(k,String(n));
+          return n;
         };
-
         try {
-          const ns = 'alfred-claw-artiles';
-          const key = 'alfred-landing-visits';
-          const r = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`);
-          const data = await r.json();
-          if (Number.isFinite(data?.value)) {
-            el.textContent = String(data.value);
-            return;
-          }
-        } catch {}
+          const r = await fetch('https://api.countapi.xyz/hit/alfred-claw-artiles/alfred-landing-visits');
+          const d = await r.json();
+          if (Number.isFinite(d?.value)) { countEl.textContent = String(d.value); }
+          else { countEl.textContent = String(localVisits()); }
+        } catch { countEl.textContent = String(localVisits()); }
 
-        try {
-          const u = 'https://visitor-badge.laobi.icu/badge?page_id=alfred-claw-artiles.alfred-landing&left_text=%F0%9F%91%80&_=' + Date.now();
-          const r = await fetch(u);
-          const svg = await r.text();
-          const nums = [...svg.matchAll(/>(\d+)</g)].map(m => Number(m[1]));
-          const last = nums.length ? nums[nums.length - 1] : NaN;
-          if (Number.isFinite(last)) {
-            el.textContent = String(last);
-            return;
-          }
-        } catch {}
-
-        el.textContent = String(bumpLocal());
+        const form = document.getElementById('waitlist-form');
+        const ok = document.getElementById('ok-msg');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = (document.getElementById('email').value || '').trim().toLowerCase();
+          if (!email) return;
+          const key='alfred_waitlist_txt';
+          const prev=localStorage.getItem(key)||'';
+          const line=`${new Date().toISOString()}\t${email}`;
+          const text=(prev?prev+'\n':'')+line;
+          localStorage.setItem(key,text);
+          ok.style.display='block';
+          const blob=new Blob([text+'\n'],{type:'text/plain;charset=utf-8'});
+          const a=document.createElement('a');
+          a.href=URL.createObjectURL(blob);
+          a.download='waitlist.txt';
+          a.click();
+          URL.revokeObjectURL(a.href);
+          form.reset();
+        });
       })();
     </script>
   </body>
