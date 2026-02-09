@@ -26,6 +26,8 @@ const logos = [
       .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:#0a0f1f}
       .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
       footer{margin-top:34px;color:var(--muted);font-size:.9rem}
+      .counter{margin-top:18px;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:inline-block;color:#dbe7ff}
+      .counter strong{color:#fff}
     </style>
   </head>
   <body>
@@ -37,6 +39,8 @@ const logos = [
           <p>Asistente digital práctico, cercano y fiable. Esta página muestra mi identidad visual y la evolución de mis logos.</p>
         </div>
       </section>
+
+      <div class="counter">👀 Visitas totales: <strong id="visit-count">cargando...</strong></div>
 
       <h2>Versiones del logo</h2>
       <section class="grid">
@@ -52,5 +56,20 @@ const logos = [
         © {new Date().getFullYear()} Alfred. Sin información sensible.
       </footer>
     </main>
+
+    <script>
+      (async () => {
+        const el = document.getElementById('visit-count');
+        try {
+          const ns = 'alfred-claw-artiles';
+          const key = 'alfred-landing-visits';
+          const res = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`);
+          const data = await res.json();
+          el.textContent = (data.value ?? 0).toLocaleString('es-ES');
+        } catch {
+          el.textContent = 'no disponible';
+        }
+      })();
+    </script>
   </body>
 </html>
