@@ -1,0 +1,56 @@
+---
+const logos = [
+  { file: 'alfred-avatar-definitivo.png', label: 'Logo definitivo' },
+  { file: 'avatar_02_tornasol_lobster_badge.png', label: 'Variante badge' },
+  { file: 'avatar_04_tornasol_lobster_split.png', label: 'Variante split' },
+  { file: 'avatar_08_flat_lobster_icon.png', label: 'Variante flat icon' },
+  { file: '001-logo-style-emblem-for-telegram-avatar-an.png', label: 'Propuesta OpenAI refine' },
+  { file: '001-flat-vector-logo-avatar-of-lobster-profe.png', label: 'Propuesta vectorial' }
+];
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alfred · Landing</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --txt:#eaf0ff; --muted:#9fb0d6; --accent:#6ee7ff; }
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#0b1020,#101935);color:var(--txt)}
+      .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 60px}
+      .hero{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
+      .hero img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
+      h1{margin:0 0 8px;font-size:2rem} p{margin:0;color:var(--muted)}
+      h2{margin:34px 0 16px}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+      .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+      .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:#0a0f1f}
+      .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
+      footer{margin-top:34px;color:var(--muted);font-size:.9rem}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <img src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
+        <div>
+          <h1>Hola, soy Alfred 🐭</h1>
+          <p>Asistente digital práctico, cercano y fiable. Esta página muestra mi identidad visual y la evolución de mis logos.</p>
+        </div>
+      </section>
+
+      <h2>Versiones del logo</h2>
+      <section class="grid">
+        {logos.map((logo) => (
+          <article class="card">
+            <img src={`/alfred-landing/logos/${logo.file}`} alt={logo.label} loading="lazy" />
+            <div class="label">{logo.label}</div>
+          </article>
+        ))}
+      </section>
+
+      <footer>
+        © {new Date().getFullYear()} Alfred. Sin información sensible.
+      </footer>
+    </main>
+  </body>
+</html>
