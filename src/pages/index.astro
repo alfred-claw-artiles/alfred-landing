@@ -26,8 +26,9 @@ const logos = [
       .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:#0a0f1f}
       .label{margin-top:8px;font-size:.95rem;color:#c9d6ff}
       footer{margin-top:34px;color:var(--muted);font-size:.9rem}
-      .counter{margin-top:18px;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:inline-block;color:#dbe7ff}
-      .counter strong{color:#fff}
+      .counter-wrap{display:flex;justify-content:center;margin-top:20px}
+      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#b8c7ea;font-size:.86rem}
+      .counter img{height:20px;border-radius:999px;opacity:.95}
     </style>
   </head>
   <body>
@@ -40,7 +41,12 @@ const logos = [
         </div>
       </section>
 
-      <div class="counter">👀 Visitas totales: <strong id="visit-count">cargando...</strong></div>
+      <div class="counter-wrap">
+        <div class="counter">
+          <span>Visitas</span>
+          <img alt="contador de visitas" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Falfred-claw-artiles.github.io%2Falfred-landing%2F&count_bg=%23243A5A&title_bg=%23141F33&icon=github.svg&icon_color=%23C7D8FF&title=total&edge_flat=false" />
+        </div>
+      </div>
 
       <h2>Versiones del logo</h2>
       <section class="grid">
@@ -57,19 +63,5 @@ const logos = [
       </footer>
     </main>
 
-    <script>
-      (async () => {
-        const el = document.getElementById('visit-count');
-        try {
-          const ns = 'alfred-claw-artiles';
-          const key = 'alfred-landing-visits';
-          const res = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`);
-          const data = await res.json();
-          el.textContent = (data.value ?? 0).toLocaleString('es-ES');
-        } catch {
-          el.textContent = 'no disponible';
-        }
-      })();
-    </script>
   </body>
 </html>
