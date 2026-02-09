@@ -14,70 +14,92 @@ const logos = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Alfred Claw · Próximamente</title>
     <style>
-      :root { --bg:#070d20; --bg2:#101a37; --card:#121a33; --txt:#edf2ff; --muted:#a7b8df; --line:rgba(255,255,255,.09); --accent:#66e3ff; }
-      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt)}
-      .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
-      .hero,.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px}
-      .hero{padding:20px;display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center}
-      .hero img{width:100px;height:100px;border-radius:50%;border:3px solid var(--accent)}
-      h1{margin:0;font-size:2rem} h2{margin:26px 0 12px;font-size:1.45rem}
-      p{margin:8px 0;color:var(--muted)}
-      .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.88rem;color:#d8e7ff}
-      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-      .card{padding:14px}
-      .title{font-weight:700;margin-bottom:6px}
-      .counter-wrap{display:flex;justify-content:center;margin:18px 0 8px}
-      .counter{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+      :root{
+        --bg:#060b1a;--bg2:#0d1734;--card:#101c3f;--txt:#f2f6ff;--muted:#b2c2e9;--line:rgba(255,255,255,.12);--accent:#6be5ff;
+      }
+      *{box-sizing:border-box}
+      body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt)}
+      .section{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:40px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+      .container{width:min(1100px,100%)}
+      .hero-box{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:22px;padding:28px}
+      .hero-box img{width:140px;height:140px;border-radius:50%;border:4px solid var(--accent)}
+      .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid var(--line);font-size:.95rem;color:#d8e4ff;background:rgba(255,255,255,.03);margin-bottom:14px}
+      h1{margin:0;font-size:clamp(2.1rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.02em}
+      .impact{margin-top:14px;font-size:clamp(1.15rem,2.4vw,1.7rem);color:#d7e5ff;max-width:18ch}
+
+      .counter-wrap{display:flex;justify-content:center;margin-top:18px}
+      .counter{display:flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);font-size:1.05rem}
       .counter-num{font-weight:700}
-      .waitlist{padding:16px}
+
+      .center{text-align:center}
+      h2{margin:0;font-size:clamp(2rem,5vw,4rem);line-height:1.04;letter-spacing:-.02em}
+      .subtitle{margin:14px auto 0;max-width:20ch;font-size:clamp(1rem,2vw,1.35rem);color:var(--muted)}
+      .feature-grid{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+      .feature{padding:22px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+      .feature b{font-size:1.2rem}
+      .feature p{margin:8px 0 0;color:#c7d7ff}
+
+      .wait-box{max-width:760px;margin:26px auto 0;padding:22px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
       .row{display:flex;gap:10px;flex-wrap:wrap}
-      input[type="email"]{flex:1;min-width:220px;background:#0b1328;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px}
-      button{background:#1d3d75;color:#fff;border:1px solid #2f5aa1;padding:12px 14px;border-radius:10px;font-weight:600;cursor:pointer}
-      .ok{font-size:.9rem;color:#b8ffd5;margin-top:8px;display:none}
-      .logos{margin-top:34px}
-      .logo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-      .logo-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px}
+      input[type=email]{flex:1;min-width:230px;background:#0a1430;color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:1rem}
+      button{background:#1f4f96;color:#fff;border:1px solid #3a6ec0;padding:14px 16px;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer}
+      .ok{font-size:.95rem;color:#baffd5;margin-top:10px;display:none}
+
+      .logo-grid{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+      .logo-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
       .logo-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px}
-      .label{margin-top:7px;color:#cfdbff;font-size:.92rem}
+      .label{margin-top:8px;color:#d3dfff;font-size:.95rem}
     </style>
   </head>
   <body>
-    <main class="wrap">
-      <section class="hero">
-        <img src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
-        <div>
-          <span class="pill">Basado en OpenClaw</span>
-          <h1>Alfred Claw</h1>
-          <p>Tu asistente digital para automatización real, respuestas rápidas y ejecución útil en el día a día.</p>
-          <p><strong>🚀 Disponible próximamente.</strong></p>
-        </div>
-      </section>
-
-      <div class="counter-wrap">
-        <div class="counter"><span>👀</span><span class="counter-num" id="visit-count">…</span></div>
-      </div>
-
-      <h2>¿Qué hace Alfred?</h2>
-      <section class="grid">
-        <article class="card"><div class="title">Automatiza tareas</div><p>Recordatorios, seguimientos, búsquedas y flujos de trabajo sin fricción.</p></article>
-        <article class="card"><div class="title">Te ahorra tiempo</div><p>Menos pasos manuales, más foco en lo importante.</p></article>
-        <article class="card"><div class="title">Se adapta a ti</div><p>Responde en tu estilo, con contexto y criterio práctico.</p></article>
-      </section>
-
-      <h2>Únete a la lista de espera</h2>
-      <section class="card waitlist">
-        <p>Déjame tu correo y te aviso cuando esté abierto al público.</p>
-        <form id="waitlist-form">
-          <div class="row">
-            <input id="email" type="email" placeholder="tu@email.com" required />
-            <button type="submit">Quiero apuntarme</button>
+    <section class="section">
+      <div class="container">
+        <div class="hero-box">
+          <img src="/alfred-landing/logos/alfred-avatar-definitivo.png" alt="Logo de Alfred" />
+          <div>
+            <span class="eyebrow">Basado en OpenClaw</span>
+            <h1>ALFRED CLAW</h1>
+            <p class="impact">Tu asistente digital para hacer más en menos tiempo.</p>
+            <div class="counter-wrap">
+              <div class="counter"><span>👀</span><span class="counter-num" id="visit-count">…</span></div>
+            </div>
           </div>
-          <div class="ok" id="ok-msg">¡Apuntado! Guardado en waitlist.txt ✅</div>
-        </form>
-      </section>
+        </div>
+      </div>
+    </section>
 
-      <section class="logos">
-        <h2>Versiones del logo</h2>
+    <section class="section">
+      <div class="container center">
+        <h2>PRÓXIMAMENTE</h2>
+        <p class="subtitle">Automatiza tareas, reduce fricción y gana foco diario.</p>
+        <div class="feature-grid">
+          <article class="feature"><b>Rápido</b><p>Respuestas directas, sin rodeos.</p></article>
+          <article class="feature"><b>Útil</b><p>Automatización real, no humo.</p></article>
+          <article class="feature"><b>Adaptable</b><p>Se ajusta a tu estilo de trabajo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container center">
+        <h2>ÚNETE A LA LISTA</h2>
+        <p class="subtitle">Te aviso cuando abramos acceso.</p>
+        <div class="wait-box">
+          <form id="waitlist-form">
+            <div class="row">
+              <input id="email" type="email" placeholder="tu@email.com" required />
+              <button type="submit">Quiero entrar</button>
+            </div>
+            <div class="ok" id="ok-msg">¡Apuntado! Guardado en waitlist.txt ✅</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container center">
+        <h2>EVOLUCIÓN DEL LOGO</h2>
+        <p class="subtitle">Del concepto al definitivo.</p>
         <div class="logo-grid">
           {logos.map((logo) => (
             <article class="logo-card">
@@ -86,8 +108,8 @@ const logos = [
             </article>
           ))}
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <script>
       (async () => {
