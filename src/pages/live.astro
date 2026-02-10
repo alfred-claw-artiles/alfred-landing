@@ -154,14 +154,33 @@ const logos = [
 
         const form = document.getElementById('waitlist-form');
         const ok = document.getElementById('ok-msg');
-        form.addEventListener('submit', (e) => {
+        const waitlistEndpoint = 'https://script.google.com/macros/s/AKfycbygFfi0mc_9NIkRrrcS9bIY3tWufGLUVxvY1pHGQwUKkk1HB6yVCIhIAqCYmQCdzFubFg/exec';
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const email = (document.getElementById('email').value || '').trim().toLowerCase();
           if (!email) return;
+
+          const payload = {
+            email,
+            page: location.pathname,
+            userAgent: navigator.userAgent,
+            timestamp: new Date().toISOString()
+          };
+
+          try {
+            await fetch(waitlistEndpoint, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload)
+            });
+          } catch {}
+
           const key = 'alfred_waitlist_txt';
           const prev = localStorage.getItem(key) || '';
           const line = `${new Date().toISOString()}\t${email}`;
           localStorage.setItem(key, (prev ? prev + '\n' : '') + line);
+
           ok.style.display = 'block';
           form.reset();
         });
