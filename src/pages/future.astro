@@ -124,17 +124,11 @@ const logos = [
           return false;
         };
         try {
-          const r1 = await fetch('https://abacus.jasoncameron.dev/hit/alfred-claw-artiles/landing-main');
+          const r1 = await fetch('https://api.counterapi.dev/v1/alfred-claw-artiles/landing-main/up');
           const d1 = await r1.json();
-          if (!setCount(d1?.value)) throw new Error('bad abacus value');
+          if (!setCount(d1?.count)) throw new Error('bad counterapi value');
         } catch {
-          try {
-            const r2 = await fetch('https://api.countapi.xyz/hit/alfred-claw-artiles/alfred-landing-visits');
-            const d2 = await r2.json();
-            if (!setCount(d2?.value)) throw new Error('bad countapi value');
-          } catch {
-            countEl.textContent = localStorage.getItem(cacheKey) || '—';
-          }
+          countEl.textContent = localStorage.getItem(cacheKey) || '—';
         }
 
         const form = document.getElementById('waitlist-form');
