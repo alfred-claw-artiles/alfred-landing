@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alfred-claw-artiles.github.io/alfred-landing/sitemap.xml
