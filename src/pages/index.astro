@@ -144,17 +144,28 @@ const logos = [
     <script>
       (async () => {
         const countEl = document.getElementById('visit-count');
-        const localVisits = () => {
-          const k = 'alfred_visits_fallback';
-          const n = (parseInt(localStorage.getItem(k) || '0', 10) || 0) + 1;
-          localStorage.setItem(k, String(n));
-          return n;
+        const cacheKey = 'alfred_visits_global_cache';
+        const setCount = (v) => {
+          if (Number.isFinite(v)) {
+            countEl.textContent = String(v);
+            localStorage.setItem(cacheKey, String(v));
+            return true;
+          }
+          return false;
         };
         try {
-          const r = await fetch('https://api.countapi.xyz/hit/alfred-claw-artiles/alfred-landing-visits');
-          const d = await r.json();
-          countEl.textContent = Number.isFinite(d?.value) ? String(d.value) : String(localVisits());
-        } catch { countEl.textContent = String(localVisits()); }
+          const r1 = await fetch('https://abacus.jasoncameron.dev/hit/alfred-claw-artiles/landing-main');
+          const d1 = await r1.json();
+          if (!setCount(d1?.value)) throw new Error('bad abacus value');
+        } catch {
+          try {
+            const r2 = await fetch('https://api.countapi.xyz/hit/alfred-claw-artiles/alfred-landing-visits');
+            const d2 = await r2.json();
+            if (!setCount(d2?.value)) throw new Error('bad countapi value');
+          } catch {
+            countEl.textContent = localStorage.getItem(cacheKey) || '—';
+          }
+        }
 
         const form = document.getElementById('waitlist-form');
         const ok = document.getElementById('ok-msg');
